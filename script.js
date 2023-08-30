@@ -1,3 +1,13 @@
+//gobal variables
+
+
+
+//functions
+
+
+//processes
+
+
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
@@ -20,4 +30,6 @@ $(function () {
   // attribute of each time-block be used to do this?
   //
   // TODO: Add code to display the current date in the header of the page.
+  const currentDate = dayjs();
+  $('#currentDay').text(currentDate.format('dddd, MMMM D YYYY'));
 });
