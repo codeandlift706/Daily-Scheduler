@@ -23,7 +23,7 @@ $(function () {
     }
     )
   })
-
+  //yields each text from local storage
   textContainerEl.each(function () {
     var value = localStorage.getItem(name);
     var name = $(this).parent().attr('id');
@@ -33,7 +33,7 @@ $(function () {
   })
 
 
-  //when I refresh the page, how do I yield the info from local storage and show it?
+
 
   // TODO: Add code to apply the past, present, or future class to each time
   // block by comparing the id to the current hour. HINTS: How can the id
@@ -41,11 +41,33 @@ $(function () {
   // past, present, and future classes? How can Day.js be used to get the
   // current hour in 24-hour time?
   //
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
-  //
-  // TODO: Add code to display the current date in the header of the page.
-  const currentDate = dayjs();
-  $('#currentDay').text(currentDate.format('dddd, MMMM D YYYY'));
+  function currentColorDisplay() {
+    for (var i = 0; i < textContainerEl.length; i++) {
+      //set currentHour = div class for each textarea
+      
+      //if the current id < current hour (past)
+      //then display the hour-x id as GRAY
+
+      //if the hour-x id is === current hour (current)
+      //then display the hour-x id as RED
+
+      //if the current id is > current hour (future)
+      //then display the hour-x id as GREEN
+
+    }
+  }
+
+
+    
+
+
+
+
+// TODO: Add code to get any user input that was saved in localStorage and set
+// the values of the corresponding textarea elements. HINT: How can the id
+// attribute of each time-block be used to do this?
+//
+// TODO: Add code to display the current date in the header of the page.
+const currentDate = dayjs();
+$('#currentDay').text(currentDate.format('dddd, MMMM D YYYY'));
 });
