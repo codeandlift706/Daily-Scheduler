@@ -1,5 +1,5 @@
 var buttonEl = $('.saveBtn');
-var textContainerEl = $('.description');
+var textContainerEl = $('textarea');
 
 
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
@@ -18,16 +18,16 @@ $(function () {
     //$('textarea').each(function() { //get all textarea elements, go through each one
     textContainerEl.each(function() {
     var value = $(this).val(); //this means, the textarea in the function. We are getting the value of it and storing it into the value variable.
-    var name = $(this).attr('#hour-9'); //In the example, name should be the key that is stored in localStorage. You'll need to figure what key values you'll use to get and set the textarea values. You will need to update the right side of the = to get what you want. .attr('') targets an attribute on the element (in this case textarea) and grabs the value of that attribute you put in there.
+    var name = $(this).attr('hour-9'); //In the example, name should be the key that is stored in localStorage. You'll need to figure what key values you'll use to get and set the textarea values. You will need to update the right side of the = to get what you want. .attr('') targets an attribute on the element (in this case textarea) and grabs the value of that attribute you put in there.
     
     console.log(value) //console logs the value
-    localStorage[name] = value;
-    //localStorage[name] = value; //this stores the key and value into local storage
-    });   
-    });
+    localStorage[name] = value; //this stores the key and value into local storage
+    //let savedText = document.createElement('input');
+    //document.textContainerEl.appendChild(savedText);   
+    
+})})
 
 
-  })
   // TODO: Add code to apply the past, present, or future class to each time
   // block by comparing the id to the current hour. HINTS: How can the id
   // attribute of each time-block be used to conditionally add or remove the
@@ -41,3 +41,4 @@ $(function () {
   // TODO: Add code to display the current date in the header of the page.
   const currentDate = dayjs();
   $('#currentDay').text(currentDate.format('dddd, MMMM D YYYY'));
+});
