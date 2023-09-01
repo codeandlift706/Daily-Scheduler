@@ -1,17 +1,9 @@
 var buttonEl = $('.saveBtn');
 var textContainerEl = $('textarea');
+var allTextBox = $('.time-block');
 
 
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
 $(function () {
-  // TODO: Add a listener for click events on the save button. This code should
-  // use the id in the containing time-block as a key to save the user input in
-  // local storage. 
-  // HINT: What does `this` reference in the click listener function? 
-  // How can DOM traversal be used to get the "hour-x" id of the time-block containing the button that was clicked? 
-  // How might the id be useful when saving the description in local storage?
   buttonEl.click(function () { //assigns click function to all buttonEl
     textContainerEl.each(function () { //get all textarea elements, go through each one
 
@@ -23,51 +15,39 @@ $(function () {
     }
     )
   })
+
+
+
   //yields each text from local storage
   textContainerEl.each(function () {
     var value = localStorage.getItem(name);
     var name = $(this).parent().attr('id');
 
     $(this).val(value)
-
   })
 
 
+  allTextBox.each(function () { //takes each of the divs
+    var timeValue = parseItn($(this).attr('id').split("-",[])); //locate each id and split
+    
+    console.log(timeValue);
+    currentHour = (dayjs().format("HH"));
 
-
-  // TODO: Add code to apply the past, present, or future class to each time
-  // block by comparing the id to the current hour. HINTS: How can the id
-  // attribute of each time-block be used to conditionally add or remove the
-  // past, present, and future classes? How can Day.js be used to get the
-  // current hour in 24-hour time?
-  //
-  function currentColorDisplay() {
-    for (var i = 0; i < textContainerEl.length; i++) {
-      //set currentHour = div class for each textarea
-      
-      //if the current id < current hour (past)
-      //then display the hour-x id as GRAY
-
-      //if the hour-x id is === current hour (current)
-      //then display the hour-x id as RED
-
-      //if the current id is > current hour (future)
-      //then display the hour-x id as GREEN
+    for (var i = 0; i < timeValue.length; i++) {
+      if (timeValue[0] === currentHour) {
+        allTextBox.addClass("present");
+      }
+      if (timeValue[0] < currentHour) {
+        allTextBox.addClass("past");
+      }
+      if (timeValue[0] > currentHour) {
+        allTextBox.addClass("future");
+      }
 
     }
-  }
+  })
+})
 
 
-    
-
-
-
-
-// TODO: Add code to get any user input that was saved in localStorage and set
-// the values of the corresponding textarea elements. HINT: How can the id
-// attribute of each time-block be used to do this?
-//
-// TODO: Add code to display the current date in the header of the page.
-const currentDate = dayjs();
+var currentDate = dayjs();
 $('#currentDay').text(currentDate.format('dddd, MMMM D YYYY'));
-});
