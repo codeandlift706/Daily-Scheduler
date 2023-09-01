@@ -18,12 +18,13 @@ $(function () {
 
   //yields each text from local storage
   textContainerEl.each(function () {
-    var value = localStorage.getItem(name);
     var name = $(this).parent().attr('id');
+    var value = localStorage.getItem(name);
 
     $(this).val(value);
   })
 
+  //connect past, present, future
   allTextBox.each(function () { //takes each of the divs
     var timeValue = $(this).attr('id').split("-")[1]; //locate each id and split
 
