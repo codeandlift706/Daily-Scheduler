@@ -2,9 +2,9 @@ var buttonEl = $('.saveBtn');
 var textContainerEl = $('textarea');
 var allTextBox = $('.time-block');
 
-
 $(function () {
   buttonEl.click(function () { //assigns click function to all buttonEl
+    console.log("Hello");
     textContainerEl.each(function () { //get all textarea elements, go through each one
 
       var value = $(this).val(); //get the value of this, textarea
@@ -16,38 +16,34 @@ $(function () {
     )
   })
 
-
-
   //yields each text from local storage
   textContainerEl.each(function () {
     var value = localStorage.getItem(name);
     var name = $(this).parent().attr('id');
 
-    $(this).val(value)
+    $(this).val(value);
   })
-
 
   allTextBox.each(function () { //takes each of the divs
-    var timeValue = parseItn($(this).attr('id').split("-",[])); //locate each id and split
-    
+    var timeValue = $(this).attr('id').split("-")[1]; //locate each id and split
+
     console.log(timeValue);
+    console.log(typeof timeValue);
     currentHour = (dayjs().format("HH"));
+    console.log(currentHour);
+    console.log(typeof currentHour);
 
-    for (var i = 0; i < timeValue.length; i++) {
-      if (timeValue[0] === currentHour) {
-        allTextBox.addClass("present");
+      if (timeValue == currentHour) {
+        $(this).addClass("present");
       }
-      if (timeValue[0] < currentHour) {
-        allTextBox.addClass("past");
+      else if (timeValue < currentHour) {
+        $(this).addClass("past");
       }
-      if (timeValue[0] > currentHour) {
-        allTextBox.addClass("future");
+      else if (timeValue > currentHour) {
+        $(this).addClass("future");
       }
-
-    }
   })
 })
-
 
 var currentDate = dayjs();
 $('#currentDay').text(currentDate.format('dddd, MMMM D YYYY'));
